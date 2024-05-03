@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Tables</title>
+    <style>
+        .table-container {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .table-container table {
+            border-collapse: collapse;
+            margin-right: 20px;
+        }
+
+        .table-container table td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <label for="input1">Enter input for Table 1 (e.g., 3#2#4):</label>
+    <input type="text" id="input1">
+    <label for="input2">Enter input for Table 2 (e.g., 3#2#5):</label>
+    <input type="text" id="input2">
+    <button onclick="createTables()">Create Tables</button>
+
+    <div class="table-container" id="tablesContainer"></div>
+
+    <script>
+        function createTables() {
+            var input1 = document.getElementById("input1").value;
+            var input2 = document.getElementById("input2").value;
+
+            var row1 = parseInt(input1.split('#')[0]);
+            var col1 = parseInt(input1.split('#')[1]);
+            var row2 = parseInt(input2.split('#')[0]);
+            var col2 = parseInt(input2.split('#')[1]);
+            var val1 = input1.split('#')[2];
+            var val2 = input2.split('#')[2];
+            console.log(row1, col1, row2, col2, val1, val2, typeof (row1));
+
+            document.getElementById("tablesContainer").innerHTML = "";
+
+            //table a
+            var table1HTML = "<div><table>";
+            let arr1 = [];
+            for (var i = 0; i < row1; i++) {
+                table1HTML += "<tr>";
+                var val = val1 * (i + 1);
+                console.log(val1, " ", val);
+                for (var j = 0; j < col1; j++) {
+                    if (i == 0) {
+                        table1HTML += "<td>" + ((val + j) * 1) + "</td>";
+                        arr1.push((val + j) * 1);
+                    }
+                    else {
+                        table1HTML += "<td>" + arr1[j] * (i + 1) + "</td>";
+                    }
+                    // myArray.push((val + j) * 1)
+                    // table1HTML += "<td>" + ((val + j) * 1) + "</td>";
+                }
+                table1HTML += "</tr>";
+            }
+            table1HTML += "</table></div>";
+            document.getElementById("tablesContainer").innerHTML += table1HTML;
+
+            //table b
+            var table2HTML = "<div><table>";
+            let arr2 = [];
+            let p2 = [row2][col2];
+            for (var i = 0; i < row2; i++) {
+                table2HTML += "<tr>";
+                let arr4 = [];
+                var val3 = val2 * (i + 1);
+                for (var j = 0; j < col2; j++) {
+                    if (i == 0) {
+                        table2HTML += "<td>" + ((val3 + j) * 1) + "</td>";
+                        arr2.push((val3 + j) * 1);
+                        arr4.push((val3 + j) * 1);
+                    }
+                    else {
+                        table2HTML += "<td>" + arr2[j] * (i + 1) + "</td>";
+                        arr4.push(arr2[j] * (i + 1));
+                    }
+                }
+                table2HTML += "</tr>";
+            }
+            table2HTML += "</table></div>";
+            document.getElementById("tablesContainer").innerHTML += table2HTML;
+
+            // table c
+
+            if (row1 == row2 && col1 == col2) {
+                if (val1 != val2) {
+                    var table2HTML = "<div><table>";
+                    let arr2 = [];
+                    let arr3 = [];
+                    for (var i = 0; i < row2; i++) {
+                        table2HTML += "<tr>";
+                        var val3 = val2 * (i + 1);
+                        var var4 = val1 * (i+1);
+                        for (var j = 0; j < col2; j++) {
+                            if (i == 0) {
+                                table2HTML += "<td>" + ((val3 + j) * 1) + "</td>";
+                                arr2.push((val3 + j) * 1);
+                            }
+                            else {
+                                table2HTML += "<td>" + arr2[j] * (i + 1) + "</td>";
+                            }
+                        }
+                        table2HTML += "</tr>";
+                    }
+                    table2HTML += "</table></div>";
+                    document.getElementById("tablesContainer").innerHTML += table2HTML;
+                }
+                else {
+                    var table1HTML = "<div><table>";
+                    let arr1 = [];
+                    for (var i = 0; i < row1; i++) {
+                        table1HTML += "<tr>";
+                        var val = val1 * (i + 1);
+                        console.log(val1, " ", val);
+                        for (var j = 0; j < col1; j++) {
+                            if (i == 0) {
+                                table1HTML += "<td>" + ((val + j) * 1) + "</td>";
+                                arr1.push((val + j) * 1);
+                            }
+                            else {
+                                table1HTML += "<td>" + arr1[j] * (i + 1) + "</td>";
+                            }
+                            // myArray.push((val + j) * 1)
+                            // table1HTML += "<td>" + ((val + j) * 1) + "</td>";
+                        }
+                        table1HTML += "</tr>";
+                    }
+                    table1HTML += "</table></div>";
+                    document.getElementById("tablesContainer").innerHTML += table1HTML;
+
+                }
+
+            }
+        }
+    </script>
+
+</body>
+
+</html>
